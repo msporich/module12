@@ -50,8 +50,40 @@ function populateHeader(jsonObj) {
 }
 
 //Step 9: Define topFlavours method
-function topFlavours() {
+function topFlavours(jsonObj) {
 	
+	//bind top flavours object to a variable
+	let topFlavours = jsonObj["topFlavours"];
 	
+	for(let i = 0; i < topFlavours.length; i++) {
+		
+		//create a few different elements
+		let article = document.createElement("article");
+		let h2 = document.createElement("h2");
+		let p1 = document.createElement("p");
+		let p2 = document.createElement("p");
+		let list = document.createElement("ul");
+		
+		h2.textContent = topFlavours[i].name;
+		p1.textContent = "Calories: " + topFlavours[i].calories;
+		p2.textContent = "Type: " + topFlavours[i].type;
+		
+		let ingredients = topFlavours[i].ingredients;
+		for(let j = 0; j < ingredients.length; j++) {
+			
+			let listItem = document.createElement("li");
+			listItem.textContent = ingredients[j];
+			list.appendChild(listItem);
+			
+		}
+		
+		//append each element to article, then append article to section
+		article.appendChild(h2);
+		article.appendChild(p1);
+		article.appendChild(p2);
+		article.appendChild(list);
+		main.appendChild(article);
+		
+	}
 	
 }
